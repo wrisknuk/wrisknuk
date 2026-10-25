@@ -94,7 +94,7 @@
             text-align: justify;
         }
 
-        /* Сертификат */
+        /* Блок сертификата (просто картинка) */
         .cert-wrapper {
             background: var(--info-bg);
             padding: 16px;
@@ -104,24 +104,24 @@
             overflow-x: auto;
             box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
         }
-        .cert-wrapper a img {
+        .cert-img-block img {
             max-width: 100%;
             display: block;
-            margin: 0 auto 12px auto;
+            margin: 0 auto;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
             border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .cert-tags {
             text-align: center;
-            margin-top: 8px;
+            margin-top: 12px;
             font-size: 13px;
         }
-        .cert-tags a {
+        .cert-tags span {
             color: var(--red-bright);
-            text-decoration: none;
         }
 
-        /* Плашки-ссылки (соцсети и контакты) */
+        /* Плашки-ссылки (теперь просто карточки) */
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -135,12 +135,12 @@
             padding: 14px 16px;
             border-radius: 6px;
             color: white;
-            text-decoration: none;
             transition: all 0.2s;
             border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             gap: 12px;
+            cursor: default; /* чтобы курсор не менялся на «руку» */
         }
         .link-card:hover {
             transform: translateY(-2px);
@@ -166,7 +166,7 @@
         .link-title { font-weight: 600; }
         .link-url { font-size: 12px; color: var(--sub-color); word-break: break-all; }
 
-        /* Проекты (карточки направлений) */
+        /* Проекты (теперь не ссылки, а карточки) */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -176,12 +176,12 @@
             background: var(--card-bg);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: 20px;
+            padding: 22px 18px;
             border-radius: 6px;
             color: white;
-            text-decoration: none;
             transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
             border: 1px solid rgba(255, 77, 77, 0.2);
+            cursor: default;
         }
         .project-card:hover {
             transform: translateY(-4px);
@@ -190,13 +190,16 @@
             border-color: rgba(255, 77, 77, 0.5);
         }
         .project-title {
-            font-weight: 600;
-            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 19px;
+            margin-bottom: 8px;
             color: var(--red-light);
+            line-height: 1.2;
         }
         .project-desc {
-            font-size: 13px;
-            opacity: 0.9;
+            font-size: 13.5px;
+            opacity: 0.95;
+            color: #e0e0e0;
         }
 
         footer {
@@ -214,7 +217,6 @@
 <div class="container">
     <header>
         <div class="avatar-box">
-            <!-- Положи файл channels4_profile.jpg в папку с HTML -->
             <img src="channels4_profile.jpg" alt="Tehno_WriskNuk Avatar" onerror="this.style.display='none'">
         </div>
         <div>
@@ -233,11 +235,13 @@
     <section>
         <h3 class="section-title">Сертификат на псевдоним</h3>
         <div class="cert-wrapper">
-            <a href="https://mynickname.com/ru/id1847369" target="_blank" rel="noopener noreferrer">
-                <img src="https://mynickname.com/img.php?id=1847369&sert=1" alt="Сертификат на никнейм Tehno_WriskNuk (WriskNuk)" border="0">
-            </a>
+            <!-- Просто картинка, без ссылки -->
+            <div class="cert-img-block">
+                <img src="43229e54-1f97-4b2a-8089-65bba4e50cc8.jpg" alt="Сертификат Tehno_WriskNuk" />
+            </div>
             <div class="cert-tags">
-                <a href="https://mynickname.com/tags/games" target="_blank" rel="noopener noreferrer">Nicknames for games</a>
+                <!-- Просто текст вместо ссылки -->
+                <span>Nicknames for games</span>
             </div>
         </div>
     </section>
@@ -245,63 +249,64 @@
     <section>
         <h3 class="section-title">Мои площадки и контакты</h3>
         <div class="links-grid">
-            <a href="https://youtube.com/@tehno_wrisknuk_official?si=rVPJn48Hy0iPN1Nx" target="_blank" rel="noopener noreferrer" class="link-card">
+            <!-- Все блоки теперь div — не кликабельные -->
+            <div class="link-card">
                 <div class="link-icon icon-yt">YouTube</div>
                 <div>
                     <div class="link-title">Мой YouTube</div>
                     <div class="link-url">youtube.com/@tehno_wrisknuk_official</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://rutube.ru/channel/45851281/" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-card">
                 <div class="link-icon icon-rutube">RuTube</div>
                 <div>
                     <div class="link-title">Мой RuTube</div>
                     <div class="link-url">rutube.ru/channel/45851281/</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://t.me/wrisknuk_life" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-card">
                 <div class="link-icon icon-tg">TG</div>
                 <div>
                     <div class="link-title">Мой Telegram</div>
                     <div class="link-url">t.me/wrisknuk_life</div>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://t.me/+jopi93Og5MAyMjli" target="_blank" rel="noopener noreferrer" class="link-card">
+            <div class="link-card">
                 <div class="link-icon icon-cast">Каст</div>
                 <div>
                     <div class="link-title">Набор в актёры</div>
                     <div class="link-url">t.me/+jopi93Og5MAyMjli</div>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
     <section>
         <h3 class="section-title">Проекты и направления</h3>
         <div class="projects-grid">
-            <a href="w10m.html" class="project-card">
+            <!-- Карточки теперь не ссылки -->
+            <div class="project-card">
                 <div class="project-title">Windows 10 Mobile</div>
                 <div class="project-desc">Приложения, инструкции, совместимость, старые устройства</div>
-            </a>
+            </div>
 
-            <a href="tech.html" class="project-card">
+            <div class="project-card">
                 <div class="project-title">Техника и ремонт</div>
                 <div class="project-desc">Разбор, тесты, советы по эксплуатации</div>
-            </a>
+            </div>
 
-            <a href="politics.html" class="project-card">
+            <div class="project-card">
                 <div class="project-title">Политика и общество</div>
                 <div class="project-desc">Позиция, аналитика, комментарии к событиям</div>
-            </a>
+            </div>
 
-            <!-- Магазин приложений — твоя ссылка -->
-            <a href="https://wrisknuk.github.io/wrisknuk_store/" target="_blank" rel="noopener noreferrer" class="project-card">
+            <div class="project-card">
                 <div class="project-title">Магазин приложений</div>
                 <div class="project-desc">XAP/APPX, сборки, зависимости, старые релизы</div>
-            </a>
+            </div>
         </div>
     </section>
 </div>
