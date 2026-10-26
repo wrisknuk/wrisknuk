@@ -67,6 +67,11 @@
             border-radius: 50%;
             border: 3px solid var(--border-color);
             box-shadow: 0 0 12px rgba(216, 16, 122, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .avatar-box:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(216, 16, 122, 0.6);
         }
 
         h1 {
@@ -94,7 +99,7 @@
             text-align: justify;
         }
 
-        /* Блок сертификата — теперь маленький и аккуратный */
+        /* Блок сертификата */
         .cert-wrapper {
             background: var(--info-bg);
             padding: 16px;
@@ -103,18 +108,18 @@
             margin-top: 24px;
             overflow-x: auto;
             box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
-            text-align: center; /* центрируем картинку */
+            text-align: center;
         }
         .cert-img-block {
             position: relative;
             display: inline-block;
-            max-width: 100%; /* чтобы не вылезало на узких экранах */
+            max-width: 100%;
             margin: 0 auto 14px auto;
         }
         .cert-img-block img {
             width: 100%;
-            max-width: 320px; /* ограничение по ширине сертификата */
-            height: auto;     /* пропорции сохраняются */
+            max-width: 320px;
+            height: auto;
             display: block;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
             border-radius: 4px;
@@ -136,6 +141,8 @@
             gap: 14px;
             margin-top: 24px;
         }
+        
+        /* Стили для ссылки-карточки */
         .link-card {
             background: rgba(30, 30, 30, 0.5);
             backdrop-filter: blur(6px);
@@ -148,7 +155,8 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            cursor: default;
+            text-decoration: none; /* Убираем подчеркивание у ссылки */
+            cursor: pointer;
         }
         .link-card:hover {
             transform: translateY(-2px);
@@ -218,9 +226,27 @@
             font-size: 14px;
             text-align: center;
         }
+
+        /* Кнопка смены темы */
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--border-color);
+            color: var(--red-bright);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+
+<!-- Кнопка переключения темы -->
+<button id="theme-toggle">🌙</button>
 
 <div class="container">
     <header>
@@ -243,9 +269,8 @@
     <section>
         <h3 class="section-title">Сертификат на псевдоним</h3>
         <div class="cert-wrapper">
-            <!-- Маленький сертификат -->
             <div class="cert-img-block">
-                <img src="43229e54-1f97-4b2a-8089-65bba4e50cc8.jpg" alt="Сертификат Tehno_WriskNuk" />
+                <img src="43229e54-1f97-4b2a-8089-65bba4e50cc8.jpg" alt="Сертификат Tehno_WriskNuk" onerror="this.style.display='none'" />
             </div>
             <div class="cert-tags">
                 <span>Nicknames for games</span>
@@ -256,37 +281,41 @@
     <section>
         <h3 class="section-title">Мои площадки и контакты</h3>
         <div class="links-grid">
-            <div class="link-card">
+            <!-- Карточка YouTube -->
+            <a href="https://youtube.com/@tehno_wrisknuk_official" target="_blank" rel="noopener noreferrer" class="link-card">
                 <div class="link-icon icon-yt">YouTube</div>
                 <div>
                     <div class="link-title">Мой YouTube</div>
                     <div class="link-url">youtube.com/@tehno_wrisknuk_official</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="link-card">
+            <!-- Карточка RuTube -->
+            <a href="https://rutube.ru/channel/45851281/" target="_blank" rel="noopener noreferrer" class="link-card">
                 <div class="link-icon icon-rutube">RuTube</div>
                 <div>
                     <div class="link-title">Мой RuTube</div>
                     <div class="link-url">rutube.ru/channel/45851281/</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="link-card">
+            <!-- Карточка Telegram -->
+            <a href="https://t.me/wrisknuk_life" target="_blank" rel="noopener noreferrer" class="link-card">
                 <div class="link-icon icon-tg">TG</div>
                 <div>
                     <div class="link-title">Мой Telegram</div>
                     <div class="link-url">t.me/wrisknuk_life</div>
                 </div>
-            </div>
+            </a>
 
-            <div class="link-card">
+            <!-- Карточка Каст -->
+            <a href="https://t.me/+jopi93Og5MAyMjli" target="_blank" rel="noopener noreferrer" class="link-card">
                 <div class="link-icon icon-cast">Каст</div>
                 <div>
                     <div class="link-title">Набор в актёры</div>
                     <div class="link-url">t.me/+jopi93Og5MAyMjli</div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -320,5 +349,10 @@
     &copy; 2023–2026 WriskNuk Corporation. Все права защищены.
 </footer>
 
-</body>
-</html>
+<script>
+    // Скрипт для переключения темы
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    toggle.addEventListener('click', () => {
+        const isDark = body.getAttribute('data
