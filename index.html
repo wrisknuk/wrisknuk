@@ -1,336 +1,257 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tehno_WriskNuk — WriskNuk Corporation</title>
-    <link rel="icon" type="image/png" href="avatar.png">
-    <link rel="apple-touch-icon" href="avatar.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tehno_WriskNuk — WriskNuk Corporation</title>
+<link rel="icon" type="image/png" href="avatar.png">
+<link rel="apple-touch-icon" href="avatar.png">
+<style>
+:root{
+  --bg:#070709;--card:#121217;--card-h:#1a1a22;--txt:#f4f4f6;--sub:#9e9ea9;
+  --acc:#d8107a;--acc2:#ff4d4d;--brd:rgba(255,255,255,.09);--sh:0 8px 24px rgba(0,0,0,.45);
+}
+[data-theme="light"]{
+  --bg:#f4f4f8;--card:#ffffff;--card-h:#fafafd;--txt:#111116;--sub:#555562;
+  --acc:#c00050;--acc2:#e62e2e;--brd:rgba(0,0,0,.09);--sh:0 8px 24px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--txt);
+  font:15px/1.6 'Segoe UI',system-ui,-apple-system,sans-serif;
+  overflow-x:hidden;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:16px 16px 48px}
 
-    <style>
-        :root {
-            --bg-color: #030303;
-            --text-color: #f4f4f4;
-            --sub-color: #b0b0b0;
-            --red-dark: #4a1a1a;
-            --red-mid: #7a2a2a;
-            --red-bright: #d8107a;
-            --red-light: #ff4d4d;
-            --card-bg: rgba(74, 26, 26, 0.65);
-            --border-color: var(--red-bright);
-            --info-bg: rgba(255, 255, 255, 0.08);
-            --glass-bg: rgba(15, 15, 15, 0.75);
-            --glass-blur: 12px;
-        }
-        [data-theme="light"] {
-            --bg-color: #fff0f0;
-            --text-color: #111111;
-            --sub-color: #555555;
-            --red-dark: #330000;
-            --red-mid: #661111;
-            --red-bright: #c00050;
-            --red-light: #ff3333;
-            --card-bg: rgba(122, 34, 34, 0.85);
-            --border-color: var(--red-bright);
-            --info-bg: rgba(0, 0, 0, 0.05);
-            --glass-bg: rgba(255, 255, 255, 0.8);
-            --glass-blur: 8px;
-        }
+/* Навигация */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px;margin-bottom:20px;background:var(--card);
+  border:1px solid var(--brd);border-radius:14px;
+}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;letter-spacing:.3px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--acc)}
+.nav-links{display:flex;gap:14px;font-size:13px}
+.nav-links a{color:var(--sub);text-decoration:none}
+.nav-links a:hover{color:var(--txt)}
+.btn-theme{
+  background:transparent;border:1px solid var(--brd);color:var(--txt);
+  padding:6px 12px;border-radius:8px;font-size:13px;cursor:pointer;
+}
+.btn-theme:active{transform:scale(.97)}
 
-        * { box-sizing: border-box; }
+/* Bento сетка */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.box{
+  background:var(--card);border:1px solid var(--brd);border-radius:18px;
+  padding:22px;box-shadow:var(--sh);
+}
+.hero{grid-column:span 12;display:flex;align-items:center;gap:22px;position:relative;overflow:hidden}
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));
+}
+.ava{
+  width:116px;height:116px;flex-shrink:0;border-radius:36px;padding:3px;
+  background:linear-gradient(135deg,var(--acc),var(--acc2));
+}
+.ava img,.ava-fb{width:100%;height:100%;border-radius:33px;object-fit:cover;display:block;background:#181820}
+.ava-fb{display:none;align-items:center;justify-content:center;font-weight:700;font-size:28px;color:#fff}
+.badge{
+  display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.8px;color:var(--acc2);background:rgba(216,16,122,.14);
+  padding:4px 10px;border-radius:6px;margin-bottom:8px;
+}
+h1{
+  font-size:32px;font-weight:700;line-height:1.15;margin-bottom:6px;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.sub{color:var(--sub);font-size:16px}
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', 'Segoe UI WP', system-ui, -apple-system, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+.story{grid-column:span 7}
+.cert{grid-column:span 5;display:flex;flex-direction:column;justify-content:space-between}
+.sec-h{font-size:19px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sec-h::before{content:'';width:4px;height:18px;border-radius:2px;background:var(--acc)}
+.story p{color:var(--sub);text-align:justify}
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+/* Хронология */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.step{padding:10px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid var(--brd)}
+[data-theme="light"] .step{background:rgba(0,0,0,.02)}
+.step b{display:block;font-size:11px;color:var(--acc);text-transform:uppercase}
+.step span{font-size:12px;color:var(--sub)}
 
-        header {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin-bottom: 48px;
-            padding-top: 16px;
-        }
+/* Сертификат */
+.cert-box{
+  position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--brd);
+  cursor:pointer;background:#0d0d12;text-align:center;
+}
+.cert-box img{width:100%;max-height:220px;object-fit:contain;display:block;margin:0 auto}
+.cert-fb{display:none;padding:36px 16px;color:#fff;font-size:13px}
+.cert-tag{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:10px;font-size:12px;color:var(--acc);font-weight:600;
+}
 
-        .avatar-box {
-            width: 136px;
-            height: 136px;
-            flex-shrink: 0;
-            position: relative;
-        }
-        .avatar-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 54px; /* чуть мягче, чем 50% */
-            border: 3px solid var(--border-color);
-            box-shadow: 0 0 16px rgba(216, 16, 122, 0.45);
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s;
-            backdrop-filter: blur(4px);
-        }
-        .avatar-box:hover img {
-            transform: scale(1.07);
-            box-shadow: 0 0 28px rgba(216, 16, 122, 0.6);
-        }
+/* Площадки */
+.links-sec{grid-column:span 12}
+.links{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.l-card{
+  display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;
+  background:var(--card);border:1px solid var(--brd);text-decoration:none;color:var(--txt);
+  transition:transform .15s ease,border-color .15s ease;
+}
+.l-card:hover{transform:translateY(-2px);border-color:var(--acc);background:var(--card-h)}
+.ico{
+  width:38px;height:38px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:14px;color:#fff;flex-shrink:0;
+}
+.yt{background:#e60000}.ru{background:#1e3d7a}.tg{background:#0088cc}
+.l-info{min-width:0;flex:1}
+.l-t{font-weight:700;font-size:15px}
+.l-u{font-size:12px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.copy{
+  background:transparent;border:1px solid var(--brd);color:var(--sub);
+  border-radius:8px;padding:6px 9px;font-size:11px;cursor:pointer;flex-shrink:0;
+}
+.copy:active{border-color:var(--acc);color:var(--acc)}
 
-        h1 {
-            margin: 0 0 6px 0;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-            color: var(--red-bright);
-            background: linear-gradient(90deg, var(--red-bright), var(--red-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        h2 {
-            margin: 0;
-            font-size: 18px;
-            color: var(--sub-color);
-        }
+/* Модалка сертификата */
+.modal{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99;
+  align-items:center;justify-content:center;padding:16px;
+}
+.modal.open{display:flex}
+.modal img{max-width:100%;max-height:88vh;border-radius:10px;border:1px solid var(--acc)}
 
-        /* Кнопка смены темы */
-        .theme-toggle {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            border: 1px solid rgba(255,255,255,0.15);
-            color: var(--text-color);
-            padding: 8px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.2s;
-        }
-        .theme-toggle:hover {
-            border-color: var(--border-color);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(216, 16, 122, 0.15);
-        }
+footer{text-align:center;color:var(--sub);font-size:13px;margin-top:28px}
 
-        .section-title {
-            font-size: 28px;
-            margin-top: 60px;
-            margin-bottom: 22px;
-            color: var(--text-color);
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--red-bright);
-            margin-top: 8px;
-        }
-
-        .story-text {
-            color: var(--sub-color);
-            text-align: justify;
-            max-width: 760px;
-        }
-
-        /* Сертификат */
-        .cert-wrapper {
-            background: var(--info-bg);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid var(--red-bright);
-            margin-top: 28px;
-            overflow-x: auto;
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-        .cert-img-block {
-            position: relative;
-            display: inline-block;
-            max-width: 100%;
-            margin: 0 auto 16px auto;
-        }
-        .cert-img-block img {
-            width: 100%;
-            max-width: 360px;
-            height: auto;
-            display: block;
-            filter: drop-shadow(0 6px 8px rgba(0,0,0,0.35));
-            border-radius: 6px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .cert-tags {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 13px;
-            color: var(--sub-color);
-        }
-        .cert-tags span {
-            color: var(--red-bright);
-        }
-
-        /* Сетка ссылок */
-        .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .link-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(var(--glass-blur));
-            -webkit-backdrop-filter: blur(var(--glass-blur));
-            padding: 16px 18px;
-            border-radius: 8px;
-            color: white;
-            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-            border: 1px solid rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .link-card:hover {
-            transform: translateY(-3px);
-            background: rgba(30, 30, 30, 0.95);
-            border-color: var(--border-color);
-            box-shadow: 0 8px 20px rgba(216, 16, 122, 0.22);
-        }
-        .link-icon {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            font-size: 19px;
-            flex-shrink: 0;
-        }
-        .icon-yt { background: #ff0000; color: white; }
-        .icon-rutube { background: #1e3d7a; color: white; }
-        .icon-tg { background: #0088cc; color: white; }
-        .icon-cast { background: var(--red-mid); color: var(--red-light); }
-
-        .link-title { font-weight: 600; }
-        .link-url { font-size: 12px; color: var(--sub-color); word-break: break-all; }
-
-        /* Проекты */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 18px;
-        }
-        .project-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 24px 20px;
-            border-radius: 8px;
-            color: white;
-            transition: transform 0.25s, background 0.25s, box-shadow 0.25s;
-            border: 1px solid rgba(255, 77, 77, 0.2);
-            cursor: default;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            background: rgba(74, 26, 26, 0.9);
-            box-shadow: 0 8px 22px rgba(216, 16, 122, 0.38);
-            border-color: rgba(255, 77, 77, 0.5);
-        }
-        .project-title {
-            font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: var(--red-light);
-            line-height: 1.2;
-        }
-        .project-desc {
-            font-size: 14px;
-            opacity: 0.92;
-            color: #e0e0e0;
-        }
-
-        footer {
-            margin-top: 72px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            color: var(--sub-color);
-            font-size: 14px;
-            text-align: center;
-        }
-
-        @media (max-width: 640px) {
-            header { flex-direction: column; align-items: stretch; gap: 16px; }
-            .avatar-box { width: 112px; height: 112px; }
-            .section-title { font-size: 24px; }
-        }
-    </style>
+@media(max-width:760px){
+  .story,.cert{grid-column:span 12}
+  .hero{flex-direction:column;align-items:flex-start;gap:14px}
+  .ava{width:92px;height:92px;border-radius:28px}
+  .ava img,.ava-fb{border-radius:25px}
+  h1{font-size:26px}
+  .nav-links{display:none}
+  .steps{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-<button id="theme-toggle" class="theme-toggle">🌙 Переключить тему</button>
+<div class="wrap">
+  <nav class="nav">
+    <div class="brand"><span class="dot"></span>WriskNuk Corp.</div>
+    <div class="nav-links">
+      <a href="#story">История</a>
+      <a href="#cert">Сертификат</a>
+      <a href="#links">Площадки</a>
+    </div>
+    <button class="btn-theme" id="tBtn">🌙 Тема</button>
+  </nav>
 
-<div class="container">
-    <header>
-        <div class="avatar-box">
-            <img src="channels4_profile.jpg" alt="Tehno_WriskNuk Avatar" onerror="this.style.display='none'">
-        </div>
-        <div>
-            <h1>Tehno_WriskNuk</h1>
-            <h2>WriskNuk Corporation — техника, W10M, политика</h2>
-        </div>
+  <main class="bento">
+    <header class="box hero">
+      <div class="ava">
+        <img src="channels4_profile.jpg" alt="Tehno_WriskNuk Avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="ava-fb">TW</div>
+      </div>
+      <div>
+        <span class="badge">W10M • Tech • Politics</span>
+        <h1>Tehno_WriskNuk</h1>
+        <div class="sub">WriskNuk Corporation — техника, W10M, политика</div>
+      </div>
     </header>
 
-    <section>
-        <h3 class="section-title">История канала</h3>
-        <p class="story-text">
-            Весной 2023 года был создан канал на YouTube и RuTube. На YouTube канал получил название PC TECHNICIAN, на RuTube — WriskNuk TECHNICIAN. В дальнейшем оба канала были переименованы в Tehno_WriskNuk, а проекты стали выпускаться под брендом WriskNuk Corporation. Сейчас основное направление — работа с Windows 10 Mobile, другой техникой и общественно-политическими темами.
-        </p>
+    <section class="box story" id="story">
+      <h2 class="sec-h">История канала</h2>
+      <p>Весной 2023 года был создан канал на YouTube и RuTube. На YouTube канал получил название PC TECHNICIAN, на RuTube — WriskNuk TECHNICIAN. В дальнейшем оба канала были переименованы в Tehno_WriskNuk, а проекты стали выпускаться под брендом WriskNuk Corporation. Сейчас основное направление — работа с Windows 10 Mobile, другой техникой и общественно-политическими темами.</p>
+      <div class="steps">
+        <div class="step"><b>Весна 2023</b><span>PC TECHNICIAN / WriskNuk TECHNICIAN</span></div>
+        <div class="step"><b>Ребрендинг</b><span>Единое имя Tehno_WriskNuk</span></div>
+        <div class="step"><b>Сейчас</b><span>W10M, техника и политика</span></div>
+      </div>
     </section>
 
-    <section>
-        <h3 class="section-title">Сертификат на псевдоним</h3>
-        <div class="cert-wrapper">
-            <div class="cert-img-block">
-                <img src="43229e54-1f97-4b2a-8089-65bba4e50cc8.jpg" alt="Сертификат Tehno_WriskNuk" onerror="this.style.display='none'" />
-            </div>
-            <div class="cert-tags">
-                <span>Nicknames for games</span>
-            </div>
-        </div>
+    <section class="box cert" id="cert">
+      <h2 class="sec-h">Сертификат на псевдоним</h2>
+      <div class="cert-box" id="cOpen">
+        <img src="43229e54-1f97-4b2a-8089-65bba4e50cc8.jpg" alt="Сертификат Tehno_WriskNuk" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="cert-fb">Сертификат: 43229e54-1f97-4b2a-8089-65bba4e50cc8.jpg</div>
+      </div>
+      <div class="cert-tag">
+        <span>Nicknames for games</span>
+        <span style="color:var(--sub);font-weight:400">Нажмите для увеличения</span>
+      </div>
     </section>
 
-    <section>
-        <h3 class="section-title">Мои площадки и контакты</h3>
-        <div class="links-grid">
-            <!-- Карточка YouTube -->
-            <a href="https://youtube.com/@tehno_wrisknuk_official" target="_blank" rel="noopener noreferrer" class="link-card">
-                <div class="link-icon icon-yt">YT</div>
-                <div>
-                    <div class="link-title">Мой YouTube</div>
-                    <div class="link-url">youtube.com/@tehno_wrisknuk_official</div>
-                </div>
-            </a>
+    <section class="box links-sec" id="links">
+      <h2 class="sec-h">Мои площадки и контакты</h2>
+      <div class="links">
+        <a href="https://youtube.com/@tehno_wrisknuk_official" target="_blank" rel="noopener noreferrer" class="l-card">
+          <div class="ico yt">YT</div>
+          <div class="l-info">
+            <div class="l-t">Мой YouTube</div>
+            <div class="l-u">youtube.com/@tehno_wrisknuk_official</div>
+          </div>
+          <button class="copy" data-url="https://youtube.com/@tehno_wrisknuk_official">Копия</button>
+        </a>
 
-            <!-- Карточка RuTube -->
-            <a href="https://rutube.ru/channel/45851281/" target="_blank" rel="noopener noreferrer" class="link-card">
-                <div class="link-icon icon-rutube">Ru</div>
-                <div>
-                    <div class="link-title">Мой RuTube</div>
-                    <div class="link-url">rutube.ru/channel/45851281/</div>
-                </div>
-            </a>
+        <a href="https://rutube.ru/channel/45851281/" target="_blank" rel="noopener noreferrer" class="l-card">
+          <div class="ico ru">Ru</div>
+          <div class="l-info">
+            <div class="l-t">Мой RuTube</div>
+            <div class="l-u">rutube.ru/channel/45851281/</div>
+          </div>
+          <button class="copy" data-url="https://rutube.ru/channel/45851281/">Копия</button>
+        </a>
 
-            <!-- Карточка Telegram -->
-            <a href="https://t.me/wrisknuk_life" target="_blank" rel="noopener noreferrer" class="link
+        <a href="https://t.me/wrisknuk_life" target="_blank" rel="noopener noreferrer" class="l-card">
+          <div class="ico tg">TG</div>
+          <div class="l-info">
+            <div class="l-t">Мой Telegram</div>
+            <div class="l-u">t.me/wrisknuk_life</div>
+          </div>
+          <button class="copy" data-url="https://t.me/wrisknuk_life">Копия</button>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© WriskNuk Corporation — Tehno_WriskNuk</footer>
+</div>
+
+<div class="modal" id="modal"><img id="mImg" alt="Сертификат"></div>
+
+<script>
+const h=document.documentElement,b=document.getElementById('tBtn');
+const saved=localStorage.getItem('theme');
+if(saved)h.setAttribute('data-theme',saved);
+b.onclick=()=>{
+  const next=h.getAttribute('data-theme')==='dark'?'light':'dark';
+  h.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  b.textContent=next==='dark'?'🌙 Тема':'☀️ Тема';
+};
+b.textContent=h.getAttribute('data-theme')==='dark'?'🌙 Тема':'☀️ Тема';
+
+document.querySelectorAll('.copy').forEach(btn=>{
+  btn.onclick=e=>{
+    e.preventDefault();e.stopPropagation();
+    const u=btn.dataset.url;
+    if(navigator.clipboard)navigator.clipboard.writeText(u);
+    btn.textContent='✓';setTimeout(()=>btn.textContent='Копия',1200);
+  };
+});
+
+const modal=document.getElementById('modal'),mImg=document.getElementById('mImg');
+document.getElementById('cOpen').onclick=function(){
+  const img=this.querySelector('img');
+  if(img&&img.style.display!=='none'){mImg.src=img.src;modal.classList.add('open');}
+};
+modal.onclick=()=>modal.classList.remove('open');
+</script>
+</body>
+</html>
